@@ -3,6 +3,8 @@ import { Button, Container, Nav, Navbar } from "react-bootstrap";
 
 import { logout, getUser } from "../services/authService";
 
+import "./Layout.css";
+
 function UserLayout() {
   const navigate = useNavigate();
   const user = getUser();
@@ -14,7 +16,7 @@ function UserLayout() {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark" expand="lg" className="shadow-sm">
+      <Navbar expand="lg" variant="dark" className="custom-navbar">
         <Container>
           <Navbar.Brand>SportClub</Navbar.Brand>
 
@@ -28,9 +30,15 @@ function UserLayout() {
             </Link>
           </Nav>
 
-          <span className="text-white me-3">{user?.full_name}</span>
+          <span className="user-name">
+            {user?.full_name}
+          </span>
 
-          <Button variant="outline-light" onClick={handleLogout}>
+          <Button
+            variant="outline-light"
+            className="logout-btn"
+            onClick={handleLogout}
+          >
             Cerrar sesión
           </Button>
         </Container>

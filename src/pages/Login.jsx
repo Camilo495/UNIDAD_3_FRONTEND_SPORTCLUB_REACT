@@ -118,12 +118,6 @@ function Login() {
             {" "}Crear cuenta
           </Link>
         </div>
-
-        <p className="login-test">
-          Usuario prueba:
-          {" "}admin1@demo.cl / 12345678
-        </p>
-
       </div>
     </div>
   )

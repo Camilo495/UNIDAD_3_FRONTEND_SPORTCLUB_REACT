@@ -1,0 +1,184 @@
+.users-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #eef2ff 0%, #f8fafc 100%);
+  padding: 35px;
+}
+
+/* ==========================
+   Banner
+========================== */
+
+.users-banner {
+  background: linear-gradient(135deg, #7c3aed, #9333ea);
+  color: white;
+  border-radius: 22px;
+  padding: 40px;
+  margin-bottom: 30px;
+  box-shadow: 0 15px 35px rgba(124, 58, 237, 0.25);
+}
+
+.users-banner h1 {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.users-banner p {
+  margin: 0;
+  max-width: 700px;
+  font-size: 1rem;
+  opacity: 0.95;
+  line-height: 1.6;
+}
+
+/* ==========================
+   Card principal
+========================== */
+
+.users-card {
+  border: none !important;
+  border-radius: 22px !important;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.users-header {
+  background: white !important;
+  border-bottom: 1px solid #ececec !important;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 22px 28px;
+}
+
+.users-header h4 {
+  margin: 0;
+  font-weight: 700;
+  color: #333;
+}
+
+/* ==========================
+   Botón Nuevo Usuario
+========================== */
+
+.new-user-btn {
+  background: linear-gradient(135deg, #7c3aed, #9333ea) !important;
+  border: none !important;
+  border-radius: 50px !important;
+  padding: 12px 22px !important;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.new-user-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(124, 58, 237, 0.35);
+}
+
+/* ==========================
+   Tabla
+========================== */
+
+.users-table {
+  margin-bottom: 0 !important;
+}
+
+.users-table thead tr {
+  background: #7c3aed;
+}
+
+.users-table thead th {
+  background: #7c3aed !important;
+  color: white !important;
+  border: none !important;
+  padding: 16px !important;
+  font-weight: 600;
+}
+
+.users-table tbody td {
+  vertical-align: middle;
+  padding: 18px 16px;
+  border-color: #ececec;
+}
+
+.users-table tbody tr {
+  transition: 0.25s;
+}
+
+.users-table tbody tr:hover {
+  background: #f8f5ff;
+}
+
+/* ==========================
+   Badges
+========================== */
+
+.badge {
+  padding: 8px 12px !important;
+  border-radius: 50px !important;
+  font-size: 0.82rem !important;
+}
+
+/* ==========================
+   Botones
+========================== */
+
+.users-table .btn {
+  border-radius: 30px;
+  font-weight: 600;
+  padding: 6px 14px;
+  transition: 0.25s;
+}
+
+.users-table .btn-warning {
+  color: white;
+  background: #f59e0b;
+  border: none;
+}
+
+.users-table .btn-warning:hover {
+  background: #d97706;
+  transform: scale(1.05);
+}
+
+.users-table .btn-danger {
+  border: none;
+}
+
+.users-table .btn-danger:hover {
+  transform: scale(1.05);
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media (max-width: 768px) {
+  .users-page {
+    padding: 20px;
+  }
+
+  .users-header {
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .users-banner {
+    padding: 30px;
+  }
+
+  .users-banner h1 {
+    font-size: 1.8rem;
+  }
+}

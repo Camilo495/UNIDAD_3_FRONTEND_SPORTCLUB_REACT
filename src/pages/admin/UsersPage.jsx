@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Badge, Button, Card, Spinner, Table } from "react-bootstrap";
 import Swal from "sweetalert2";
+import { FaUsers, FaPlus, FaEdit, FaTrashAlt } from "react-icons/fa";
 
 import UserFormModal from "../../components/users/UserFormModal";
 
@@ -10,6 +11,8 @@ import {
   getUsers,
   updateUser,
 } from "../../services/userService";
+
+import "./UsersPage.css";
 
 function UsersPage() {
   const [users, setUsers] = useState([]);
@@ -93,7 +96,7 @@ function UsersPage() {
       showCancelButton: true,
       confirmButtonText: "Sí, eliminar",
       cancelButtonText: "Cancelar",
-      confirmButtonColor: "#d33",
+      confirmButtonColor: "#dc3545",
     });
 
     if (!result.isConfirmed) return;
@@ -116,94 +119,111 @@ function UsersPage() {
       });
     }
   }
+
   return (
-    <Card className="shadow-sm">
-      <Card.Header className="d-flex justify-content-between align-items-center">
-        <h4 className="mb-0">Gestión de Usuarios</h4>
+    <div className="users-page">
+      <div className="users-banner">
+        <div>
+          <h1>
+            <FaUsers /> Gestión de Usuarios
+          </h1>
 
-        <Button variant="primary" onClick={openCreateModal}>
-          Nuevo Usuario
-        </Button>
-      </Card.Header>
+          <p>
+            Administra los usuarios registrados en SportClub. Desde aquí podrás
+            crear, editar y eliminar cuentas.
+          </p>
+        </div>
+      </div>
 
-      <Card.Body>
-        {loading ? (
-          <div className="text-center p-4">
-            <Spinner animation="border" />
+      <Card className="users-card shadow-lg">
+        <Card.Header className="users-header">
+          <h4>Usuarios Registrados</h4>
 
-            <p className="mt-3">Cargando usuarios...</p>
-          </div>
-        ) : (
-          <Table responsive striped bordered hover>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Nombre Completo</th>
-                <th>Correo</th>
-                <th>Rol</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
+          <Button className="new-user-btn" onClick={openCreateModal}>
+            <FaPlus />
+            Nuevo Usuario
+          </Button>
+        </Card.Header>
 
-            <tbody>
-              {users.length > 0 ? (
-                users.map((user) => (
-                  <tr key={user.id}>
-                    <td>{user.id}</td>
+        <Card.Body>
+          {loading ? (
+            <div className="text-center p-5">
+              <Spinner animation="border" />
 
-                    <td>{user.full_name}</td>
+              <p className="mt-3">Cargando usuarios...</p>
+            </div>
+          ) : (
+            <Table responsive hover className="users-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre Completo</th>
+                  <th>Correo</th>
+                  <th>Rol</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
 
-                    <td>{user.email}</td>
+              <tbody>
+                {users.length > 0 ? (
+                  users.map((user) => (
+                    <tr key={user.id}>
+                      <td>{user.id}</td>
 
-                    <td>
-                      <Badge
-                        bg={
-                          user.role === "admin"
-                            ? "danger"
+                      <td>{user.full_name}</td>
+
+                      <td>{user.email}</td>
+
+                      <td>
+                        <Badge
+                          bg={
+                            user.role === "admin"
+                              ? "dark"
+                              : user.role === "coach"
+                                ? "success"
+                                : "primary"
+                          }
+                        >
+                          {user.role === "admin"
+                            ? "Administrador"
                             : user.role === "coach"
-                              ? "warning"
-                              : "primary"
-                        }
-                      >
-                        {user.role === "admin"
-                          ? "Administrador"
-                          : user.role === "coach"
-                            ? "Coach"
-                            : "Usuario"}
-                      </Badge>
-                    </td>
+                              ? "Coach"
+                              : "Usuario"}
+                        </Badge>
+                      </td>
 
-                    <td>
-                      <Button
-                        variant="warning"
-                        size="sm"
-                        className="me-2"
-                        onClick={() => openEditModal(user)}
-                      >
-                        Editar
-                      </Button>
+                      <td>
+                        <Button
+                          variant="warning"
+                          size="sm"
+                          className="me-2"
+                          onClick={() => openEditModal(user)}
+                        >
+                          <FaEdit /> Editar
+                        </Button>
 
-                      <Button
-                        variant="danger"
-                        size="sm"
-                        onClick={() => handleDelete(user)}
-                      >
-                        Eliminar
-                      </Button>
+                        <Button
+                          variant="danger"
+                          size="sm"
+                          onClick={() => handleDelete(user)}
+                        >
+                          <FaTrashAlt /> Eliminar
+                        </Button>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="5" className="text-center">
+                      No existen usuarios registrados.
                     </td>
                   </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan="5" className="text-center">
-                    No existen usuarios registrados.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </Table>
-        )}
-      </Card.Body>
+                )}
+              </tbody>
+            </Table>
+          )}
+        </Card.Body>
+      </Card>
 
       <UserFormModal
         show={showModal}
@@ -211,7 +231,7 @@ function UsersPage() {
         handleSave={handleSave}
         selectedUser={selectedUser}
       />
-    </Card>
+    </div>
   );
 }
 

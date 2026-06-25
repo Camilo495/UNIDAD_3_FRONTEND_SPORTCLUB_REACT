@@ -1,16 +1,150 @@
-# React + Vite
+# SportClub React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descripción
 
-Currently, two official plugins are available:
+SportClub es una aplicación web desarrollada con React y Vite que permite gestionar un club deportivo mediante diferentes roles de usuario.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+El sistema cuenta con autenticación mediante JWT, dashboards personalizados y un módulo de administración para la gestión de usuarios.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tecnologías utilizadas
 
-## Expanding the ESLint configuration
+- React
+- Vite
+- React Router DOM
+- React Bootstrap
+- Bootstrap 5
+- SweetAlert2
+- React Icons
+- Fetch API
+- Node.js
+- Express.js
+- JWT (JSON Web Token)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Funcionalidades
+
+### Login
+- Inicio de sesión.
+- Validación de credenciales.
+- Autenticación mediante JWT.
+
+### Registro
+- Registro de nuevos usuarios.
+- Validación de datos.
+
+### Dashboards
+
+#### Usuario
+- Dashboard personalizado.
+- Perfil de usuario.
+- Estadísticas.
+- Reservas.
+- Clases.
+
+#### Coach
+- Dashboard personalizado.
+- Gestión de alumnos.
+- Gestión de clases.
+- Rutinas.
+- Estadísticas.
+
+#### Administrador
+- Dashboard personalizado.
+- Gestión de usuarios.
+- Estadísticas del sistema.
+
+---
+
+## CRUD de Usuarios
+
+El administrador puede realizar las siguientes acciones:
+
+- Listar usuarios.
+- Crear usuarios.
+- Editar usuarios.
+- Eliminar usuarios.
+
+Las confirmaciones y mensajes del sistema fueron implementados utilizando SweetAlert2.
+
+---
+
+## Estructura del proyecto
+
+```
+src/
+│
+├── layouts/
+├── pages/
+│   ├── admin/
+│   ├── coach/
+│   └── user/
+├── routes/
+├── services/
+├── App.jsx
+└── main.jsx
+```
+
+---
+
+## Instalación
+
+Clonar el repositorio
+
+```bash
+git clone https://github.com/TU-USUARIO/UNIDAD_3_FRONTEND_SPORTCLUB_REACT.git
+```
+
+Entrar al proyecto
+
+```bash
+cd UNIDAD_3_FRONTEND_SPORTCLUB_REACT
+```
+
+Instalar dependencias
+
+```bash
+npm install
+```
+
+Ejecutar el proyecto
+
+```bash
+npm run dev
+```
+
+---
+
+## Credenciales de prueba
+
+Administrador
+
+```
+admin@demo.cl
+```
+
+Coach
+
+```
+coach@demo.cl
+```
+
+Usuario
+
+```
+user1@demo.cl
+```
+
+*(Las contraseñas dependen de la configuración del backend.)*
+
+---
+
+## Autor
+
+Camilo Villalobos
+
+Analista Programador
+
+INACAP
