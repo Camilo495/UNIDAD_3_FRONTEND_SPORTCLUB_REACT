@@ -1,0 +1,297 @@
+.dashboard-container {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1700px;
+  margin: auto;
+  background: linear-gradient(180deg, #f4f7fb 0%, #eef2ff 100%);
+  padding: 40px;
+}
+
+/*==============================
+  BANNER
+===============================*/
+
+.dashboard-banner {
+  background: linear-gradient(135deg, #6d28d9 0%, #9333ea 55%, #7c3aed 100%);
+  color: white;
+  border-radius: 24px;
+  padding: 38px 45px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  box-shadow: 0 18px 45px rgba(124, 58, 237, 0.28);
+  transition: 0.35s;
+}
+
+.dashboard-banner:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 28px 55px rgba(124, 58, 237, 0.35);
+}
+
+.dashboard-banner h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.dashboard-banner p {
+  max-width: 700px;
+  line-height: 1.7;
+  font-size: 1.08rem;
+  opacity: 0.95;
+}
+
+.dashboard-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: white;
+  color: #6d28d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.1rem;
+  font-weight: bold;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+/*==============================
+  CARDS
+===============================*/
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  margin-bottom: 40px;
+}
+
+.dashboard-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 22px;
+  padding: 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: 0.35s;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 6px;
+}
+
+.users::before {
+  background: #2563eb;
+}
+
+.coaches::before {
+  background: #16a34a;
+}
+
+.reservations::before {
+  background: #f97316;
+}
+
+.system::before {
+  background: #9333ea;
+}
+
+.icon-circle {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 2rem;
+  margin: auto;
+  margin-bottom: 22px;
+  transition: 0.3s;
+}
+
+.dashboard-card:hover .icon-circle {
+  transform: rotate(8deg) scale(1.08);
+}
+
+.users .icon-circle {
+  background: #2563eb;
+}
+
+.coaches .icon-circle {
+  background: #16a34a;
+}
+
+.reservations .icon-circle {
+  background: #f97316;
+}
+
+.system .icon-circle {
+  background: #9333ea;
+}
+
+.dashboard-card h3 {
+  margin-bottom: 10px;
+}
+
+.big-number {
+  display: block;
+  font-size: 2.4rem;
+  margin: 18px 0 25px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.dashboard-card button {
+  border: none;
+  border-radius: 50px;
+  padding: 13px 28px;
+  color: white;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  margin: auto;
+  transition: 0.3s;
+}
+
+.users button {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+}
+
+.coaches button {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+}
+
+.reservations button {
+  background: linear-gradient(135deg, #f97316, #fb923c);
+}
+
+.system button {
+  background: linear-gradient(135deg, #7c3aed, #9333ea);
+}
+
+.dashboard-card button:hover {
+  transform: scale(1.08);
+}
+
+/* ==========================
+   Paneles
+========================== */
+
+.stats-section {
+  background: white;
+  border-radius: 22px;
+  padding: 35px;
+  margin-top: 35px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.stats-section h2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #7c3aed;
+  margin-bottom: 30px;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.activity-item {
+  background: #f8fafc;
+  border-left: 6px solid #9333ea;
+  border-radius: 15px;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: 0.3s;
+}
+
+.activity-item:hover {
+  background: #f3e8ff;
+  transform: translateX(6px);
+}
+
+.activity-item svg {
+  color: #16a34a;
+}
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.quick-button {
+  border: none;
+  border-radius: 18px;
+  padding: 22px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: #7c3aed;
+  color: white;
+  transition: 0.3s;
+}
+
+.quick-button:hover {
+  background: #6d28d9;
+  transform: translateY(-6px);
+}
+
+/* ==========================
+   Footer
+========================== */
+
+.dashboard-footer {
+  margin-top: 40px;
+  text-align: center;
+  color: #666;
+  padding: 25px;
+}
+
+.dashboard-footer strong {
+  display: block;
+  color: #222;
+  margin-bottom: 8px;
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media (max-width: 768px) {
+  .dashboard-banner {
+    flex-direction: column;
+    text-align: center;
+    gap: 25px;
+  }
+
+  .dashboard-banner h1 {
+    font-size: 1.8rem;
+  }
+
+  .dashboard-container {
+    padding: 20px;
+  }
+}

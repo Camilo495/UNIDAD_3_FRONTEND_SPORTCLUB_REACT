@@ -7,15 +7,33 @@ export async function loginUser(data) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
-  })
+  });
 
-  const result = await response.json()
+  const result = await response.json();
 
   if (!response.ok) {
-    throw new Error(result.message || "Error al iniciar sesión")
+    throw new Error(result.message || "Error al iniciar sesión");
   }
 
-  return result.data
+  return result.data;
+}
+
+export async function registerUser(data) {
+  const response = await fetch(`${API_URL}/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result.message || "Error al registrar usuario");
+  }
+
+  return result.data;
 }
 
 export function saveSession(token, user) {

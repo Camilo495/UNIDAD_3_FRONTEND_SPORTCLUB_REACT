@@ -2,7 +2,8 @@ import { Link, Outlet, useNavigate } from "react-router-dom"
 import { Button, Container, Nav, Navbar } from "react-bootstrap"
 import { logout, getUser } from "../services/authService"
 function AdminLayout() {
-    const navigate = useNavi
+    const navigate = useNavigate()
+    const user = getUser()
     const handleLogout = () => {
         logout()
         navigate("/login")
@@ -14,6 +15,9 @@ function AdminLayout() {
                     <Navbar.Brand>SportClub Admin</Navbar.Brand>
                     <Nav className="me-auto">
                         <Link className="nav-link" to="/admin/dashboard">Dashboard</Link>
+                        <Link className="nav-link" to="/admin/users">
+                            Usuarios
+                        </Link>
                     </Nav>
                     <span className="text-white me-3">
                         {user?.name}
