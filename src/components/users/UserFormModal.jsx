@@ -2,39 +2,44 @@ import { useEffect, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 
 const initialForm = {
-  full_name: "",
-  email: "",
-  role: "user",
-  password: "",
+  name: "",
+  objective: "",
+  duration: 60,
+  status: true,
 };
 
-function UserFormModal({ show, handleClose, handleSave, selectedUser }) {
+function SportFormModal({
+  show,
+  handleClose,
+  handleSave,
+  selectedSport,
+}) {
   const [formData, setFormData] = useState(initialForm);
 
   useEffect(() => {
-    if (selectedUser) {
+    if (selectedSport) {
       setFormData({
-        full_name: selectedUser.full_name || "",
-        email: selectedUser.email || "",
-        role: selectedUser.role || "user",
-        password: "",
+        name: selectedSport.name || "",
+        objective: selectedSport.objective || "",
+        duration: selectedSport.duration || 60,
+        status: selectedSport.status ?? true,
       });
     } else {
       setFormData(initialForm);
     }
-  }, [selectedUser, show]);
+  }, [selectedSport, show]);
 
-  function handleChange(event) {
-    const { name, value } = event.target;
+  function handleChange(e) {
+    const { name, value, type, checked } = e.target;
 
     setFormData({
       ...formData,
-      [name]: value,
+      [name]: type === "checkbox" ? checked : value,
     });
   }
 
-  function onSubmit(event) {
-    event.preventDefault();
+  function onSubmit(e) {
+    e.preventDefault();
     handleSave(formData);
   }
 
@@ -42,65 +47,58 @@ function UserFormModal({ show, handleClose, handleSave, selectedUser }) {
     <Modal show={show} onHide={handleClose} centered>
       <Modal.Header closeButton>
         <Modal.Title>
-          {selectedUser ? "Editar Usuario" : "Nuevo Usuario"}
+          {selectedSport ? "Editar Deporte" : "Nuevo Deporte"}
         </Modal.Title>
       </Modal.Header>
 
       <Form onSubmit={onSubmit}>
         <Modal.Body>
+
           <Form.Group className="mb-3">
-            <Form.Label>Nombre Completo</Form.Label>
+            <Form.Label>Nombre</Form.Label>
 
             <Form.Control
               type="text"
-              name="full_name"
-              value={formData.full_name}
+              name="name"
+              value={formData.name}
               onChange={handleChange}
               required
             />
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Correo</Form.Label>
+            <Form.Label>Objetivo</Form.Label>
 
             <Form.Control
-              type="email"
-              name="email"
-              value={formData.email}
+              as="textarea"
+              rows={3}
+              name="objective"
+              value={formData.objective}
               onChange={handleChange}
               required
             />
           </Form.Group>
 
-          {!selectedUser && (
-            <Form.Group className="mb-3">
-              <Form.Label>Contraseña</Form.Label>
-
-              <Form.Control
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-          )}
-
           <Form.Group className="mb-3">
-            <Form.Label>Rol</Form.Label>
+            <Form.Label>Duración (minutos)</Form.Label>
 
-            <Form.Select
-              name="role"
-              value={formData.role}
+            <Form.Control
+              type="number"
+              name="duration"
+              value={formData.duration}
               onChange={handleChange}
-            >
-              <option value="user">Usuario</option>
-
-              <option value="coach">Coach</option>
-
-              <option value="admin">Administrador</option>
-            </Form.Select>
+              required
+            />
           </Form.Group>
+
+          <Form.Check
+            type="switch"
+            label="Activo"
+            name="status"
+            checked={formData.status}
+            onChange={handleChange}
+          />
+
         </Modal.Body>
 
         <Modal.Footer>
@@ -117,4 +115,4 @@ function UserFormModal({ show, handleClose, handleSave, selectedUser }) {
   );
 }
 
-export default UserFormModal;
+export default SportFormModal;
