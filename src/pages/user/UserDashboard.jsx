@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import {
   FaCalendarCheck,
   FaDumbbell,
@@ -25,20 +27,23 @@ function UserDashboard() {
 
   return (
     <div className="dashboard-container">
+      {/* Banner */}
       <div className="dashboard-banner">
         <div>
           <h1>¡Hola {user?.full_name || "Usuario"}!</h1>
 
           <p>
-            Bienvenido nuevamente a SportClub. Gestiona tus reservas, clases y
-            progreso deportivo desde un solo lugar.
+            Bienvenido nuevamente a SportClub. Gestiona tus reservas,
+            clases y progreso deportivo desde un solo lugar.
           </p>
         </div>
 
         <div className="dashboard-avatar">{initials}</div>
       </div>
 
+      {/* Tarjetas */}
       <div className="cards-grid">
+        {/* Reservas */}
         <div className="dashboard-card reservations">
           <div className="icon-circle">
             <FaCalendarCheck />
@@ -47,7 +52,8 @@ function UserDashboard() {
           <h3>Mis Reservas</h3>
 
           <p>
-            Consulta todas tus reservas activas y revisa tus próximas clases.
+            Consulta todas tus reservas activas y revisa tus próximas
+            clases.
           </p>
 
           <button>
@@ -56,6 +62,7 @@ function UserDashboard() {
           </button>
         </div>
 
+        {/* Clases */}
         <div className="dashboard-card classes">
           <div className="icon-circle">
             <FaDumbbell />
@@ -63,7 +70,9 @@ function UserDashboard() {
 
           <h3>Clases Disponibles</h3>
 
-          <p>Explora las clases disponibles e inscríbete rápidamente.</p>
+          <p>
+            Explora las clases disponibles e inscríbete rápidamente.
+          </p>
 
           <button>
             Ver Clases
@@ -71,6 +80,7 @@ function UserDashboard() {
           </button>
         </div>
 
+        {/* Perfil */}
         <div className="dashboard-card profile">
           <div className="icon-circle">
             <FaUserCircle />
@@ -78,15 +88,21 @@ function UserDashboard() {
 
           <h3>Mi Perfil</h3>
 
-          <p>Actualiza tus datos personales y revisa tu información.</p>
+          <p>
+            Actualiza tus datos personales y revisa tu información.
+          </p>
 
-          <button>
+          <Link
+            to="/perfil"
+            className="dashboard-button profile-button"
+          >
             Ir al Perfil
             <FaArrowRight />
-          </button>
+          </Link>
         </div>
       </div>
 
+      {/* Estadísticas */}
       <div className="stats-section">
         <h2>
           <FaChartLine />
@@ -96,19 +112,16 @@ function UserDashboard() {
         <div className="stats-grid">
           <div className="stat-box">
             <span>Reservas activas</span>
-
             <strong>3</strong>
           </div>
 
           <div className="stat-box">
             <span>Clases completadas</span>
-
             <strong>18</strong>
           </div>
 
           <div className="stat-box">
             <span>Próxima clase</span>
-
             <strong>Yoga - 18:00</strong>
           </div>
 
@@ -123,6 +136,7 @@ function UserDashboard() {
         </div>
       </div>
 
+      {/* Footer */}
       <footer className="dashboard-footer">
         <strong>SportClub © 2026</strong>
 

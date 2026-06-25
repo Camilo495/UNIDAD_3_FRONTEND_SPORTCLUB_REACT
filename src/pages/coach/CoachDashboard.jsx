@@ -5,6 +5,8 @@ import {
   FaArrowRight,
   FaChartLine,
   FaStar,
+  FaHeartbeat,
+  FaDumbbell,
 } from "react-icons/fa";
 
 import { getUser } from "../../services/authService";
@@ -25,107 +27,196 @@ function CoachDashboard() {
 
   return (
     <div className="dashboard-container">
+
+      {/* Banner */}
+
       <div className="dashboard-banner">
+
         <div>
-          <h1>¡Hola {user?.full_name || "Coach"}!</h1>
+
+          <h1>
+            ¡Hola {user?.full_name || "Coach"}!
+          </h1>
 
           <p>
-            Administra tus clases, realiza seguimiento a tus alumnos y organiza
-            tus entrenamientos.
+            Bienvenido al panel del entrenador. Administra tus alumnos,
+            clases, rutinas y realiza seguimiento del rendimiento deportivo.
           </p>
+
         </div>
 
-        <div className="dashboard-avatar">{initials}</div>
+        <div className="dashboard-avatar">
+          {initials}
+        </div>
+
       </div>
 
+      {/* Cards */}
+
       <div className="cards-grid">
+
         <div className="dashboard-card students">
+
           <div className="icon-circle">
             <FaUsers />
           </div>
 
           <h3>Mis Alumnos</h3>
 
-          <p>Consulta todos los alumnos asignados a tus clases.</p>
+          <p>
+            Actualmente tienes <strong>24 alumnos activos</strong> bajo tu
+            supervisión.
+          </p>
 
           <button>
             Ver Alumnos
             <FaArrowRight />
           </button>
+
         </div>
 
         <div className="dashboard-card classes">
+
           <div className="icon-circle">
             <FaCalendarAlt />
           </div>
 
-          <h3>Mis Clases</h3>
+          <h3>Clases Programadas</h3>
 
-          <p>Administra las clases programadas para hoy.</p>
+          <p>
+            Hoy tienes <strong>5 clases</strong> programadas para impartir.
+          </p>
 
           <button>
-            Ver Clases
+            Ver Horario
             <FaArrowRight />
           </button>
+
         </div>
 
         <div className="dashboard-card routines">
+
           <div className="icon-circle">
             <FaClipboardList />
           </div>
 
           <h3>Rutinas</h3>
 
-          <p>Crea nuevas rutinas para tus alumnos.</p>
+          <p>
+            Gestiona las rutinas personalizadas de todos tus alumnos.
+          </p>
 
           <button>
-            Crear Rutina
+            Administrar Rutinas
             <FaArrowRight />
           </button>
+
         </div>
+
       </div>
 
+      {/* Estadísticas */}
+
       <div className="stats-section">
+
         <h2>
+
           <FaChartLine />
-          Estadísticas
+
+          Resumen General
+
         </h2>
 
         <div className="stats-grid">
+
           <div className="stat-box">
-            <span>Alumnos asignados</span>
+
+            <FaUsers className="stat-icon" />
+
+            <span>Alumnos Activos</span>
 
             <strong>24</strong>
+
           </div>
 
           <div className="stat-box">
-            <span>Clases de hoy</span>
+
+            <FaCalendarAlt className="stat-icon" />
+
+            <span>Clases Hoy</span>
 
             <strong>5</strong>
+
           </div>
 
           <div className="stat-box">
-            <span>
-              <FaStar />
-              Evaluación promedio
-            </span>
+
+            <FaStar className="stat-icon" />
+
+            <span>Evaluación Promedio</span>
 
             <strong>4.9</strong>
+
           </div>
 
           <div className="stat-box">
-            <span>Rutinas creadas</span>
+
+            <FaDumbbell className="stat-icon" />
+
+            <span>Rutinas Activas</span>
 
             <strong>42</strong>
+
           </div>
+
         </div>
+
+      </div>
+
+      {/* Actividad */}
+
+      <div className="stats-section">
+
+        <h2>
+
+          <FaHeartbeat />
+
+          Actividad Reciente
+
+        </h2>
+
+        <div className="activity-list">
+
+          <div className="activity-item">
+            ✅ Se registró una nueva asistencia.
+          </div>
+
+          <div className="activity-item">
+            ✅ Rutina de fuerza actualizada.
+          </div>
+
+          <div className="activity-item">
+            ✅ Nuevo alumno asignado.
+          </div>
+
+          <div className="activity-item">
+            ✅ Clase de CrossFit finalizada.
+          </div>
+
+        </div>
+
       </div>
 
       <footer className="dashboard-footer">
+
         <strong>SportClub © 2026</strong>
 
-        <p>Panel del Entrenador</p>
+        <p>
+          Panel del Entrenador
+        </p>
+
       </footer>
+
     </div>
   );
 }
