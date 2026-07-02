@@ -12,8 +12,6 @@ import {
     updateSport,
 } from "../../services/sportsService";
 
-import "./SportsPage.css";
-
 function SportsPage() {
     const [sports, setSports] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -47,8 +45,8 @@ function SportsPage() {
         setShowModal(true);
     }
 
-    function openEditModal(sports) {
-        setSelectedSport(sports);
+    function openEditModal(sport) {
+        setSelectedSport(sport);
         setShowModal(true);
     }
 
@@ -73,7 +71,7 @@ function SportsPage() {
                 Swal.fire({
                     icon: "success",
                     title: "Deporte creado",
-                    text: "El Deporte fue creado correctamente.",
+                    text: "El deporte fue creado correctamente.",
                 });
             }
 
@@ -88,10 +86,10 @@ function SportsPage() {
         }
     }
 
-    async function handleDelete(sports) {
+    async function handleDelete(sport) {
         const result = await Swal.fire({
             title: "¿Eliminar deporte?",
-            text: `Se eliminará a ${sports.name}`,
+            text: `Se eliminará ${sport.name}`,
             icon: "warning",
             showCancelButton: true,
             confirmButtonText: "Sí, eliminar",
@@ -102,7 +100,7 @@ function SportsPage() {
         if (!result.isConfirmed) return;
 
         try {
-            await deleteSport(sports.id);
+            await deleteSport(sport.id);
 
             Swal.fire({
                 icon: "success",
@@ -129,8 +127,8 @@ function SportsPage() {
                     </h1>
 
                     <p>
-                        Administra los Deportes registrados en SportClub. Desde aquí podrás
-                        crear, editar y eliminar cuentas.
+                        Administra los deportes registrados en SportClub.
+                        Desde aquí podrás crear, editar y eliminar deportes.
                     </p>
                 </div>
             </div>
@@ -139,9 +137,11 @@ function SportsPage() {
                 <Card.Header className="users-header">
                     <h4>Deportes Registrados</h4>
 
-                    <Button className="new-user-btn" onClick={openCreateModal}>
-                        <FaPlus />
-                        Nuevo Deporte
+                    <Button
+                        className="new-user-btn"
+                        onClick={openCreateModal}
+                    >
+                        <FaPlus /> Nuevo Deporte
                     </Button>
                 </Card.Header>
 
@@ -149,8 +149,9 @@ function SportsPage() {
                     {loading ? (
                         <div className="text-center p-5">
                             <Spinner animation="border" />
-
-                            <p className="mt-3">Cargando Deportes...</p>
+                            <p className="mt-3">
+                                Cargando deportes...
+                            </p>
                         </div>
                     ) : (
                         <Table responsive hover className="users-table">
@@ -158,37 +159,36 @@ function SportsPage() {
                                 <tr>
                                     <th>ID</th>
                                     <th>Nombre</th>
-                                    <th>Obejetivo</th>
-                                    <th>Duracion</th>
+                                    <th>Objetivo</th>
+                                    <th>Duración</th>
                                     <th>Estado</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 {sports.length > 0 ? (
-                                    sports.map((sports) => (
-                                        <tr key={sports.id}>
-                                            <td>{sports.id}</td>
+                                    sports.map((sport) => (
+                                        <tr key={sport.id}>
+                                            <td>{sport.id}</td>
 
-                                            <td>{sports.name}</td>
+                                            <td>{sport.name}</td>
 
-                                            <td>{sports.objetive}</td>
+                                            <td>{sport.objective}</td>
+
+                                            <td>{sport.duration} min</td>
 
                                             <td>
                                                 <Badge
                                                     bg={
-                                                        sports.role === "admin"
-                                                            ? "dark"
-                                                            : sports.role === "coach"
-                                                                ? "success"
-                                                                : "primary"
+                                                        sport.status
+                                                            ? "success"
+                                                            : "secondary"
                                                     }
                                                 >
-                                                    {sports.role === "admin"
-                                                        ? "Administrador"
-                                                        : sports.role === "coach"
-                                                            ? "Coach"
-                                                            : "Usuario"}
+                                                    {sport.status
+                                                        ? "Activo"
+                                                        : "Inactivo"}
                                                 </Badge>
                                             </td>
 
@@ -197,7 +197,9 @@ function SportsPage() {
                                                     variant="warning"
                                                     size="sm"
                                                     className="me-2"
-                                                    onClick={() => openEditModal(sports)}
+                                                    onClick={() =>
+                                                        openEditModal(sport)
+                                                    }
                                                 >
                                                     <FaEdit /> Editar
                                                 </Button>
@@ -205,7 +207,9 @@ function SportsPage() {
                                                 <Button
                                                     variant="danger"
                                                     size="sm"
-                                                    onClick={() => handleDelete(sports)}
+                                                    onClick={() =>
+                                                        handleDelete(sport)
+                                                    }
                                                 >
                                                     <FaTrashAlt /> Eliminar
                                                 </Button>
@@ -214,8 +218,11 @@ function SportsPage() {
                                     ))
                                 ) : (
                                     <tr>
-                                        <td colSpan="5" className="text-center">
-                                            No existen Deportes registrados.
+                                        <td
+                                            colSpan="6"
+                                            className="text-center"
+                                        >
+                                            No existen deportes registrados.
                                         </td>
                                     </tr>
                                 )}

@@ -2,44 +2,39 @@ import { useEffect, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 
 const initialForm = {
-  name: "",
-  objective: "",
-  duration: 60,
-  status: true,
+  full_name: "",
+  email: "",
+  role: "user",
+  password: "",
 };
 
-function SportFormModal({
-  show,
-  handleClose,
-  handleSave,
-  selectedSport,
-}) {
+function UserFormModal({ show, handleClose, handleSave, selectedUser }) {
   const [formData, setFormData] = useState(initialForm);
 
   useEffect(() => {
-    if (selectedSport) {
+    if (selectedUser) {
       setFormData({
-        name: selectedSport.name || "",
-        objective: selectedSport.objective || "",
-        duration: selectedSport.duration || 60,
-        status: selectedSport.status ?? true,
+        full_name: selectedUser.full_name || "",
+        email: selectedUser.email || "",
+        role: selectedUser.role || "user",
+        password: "",
       });
     } else {
       setFormData(initialForm);
     }
-  }, [selectedSport, show]);
+  }, [selectedUser, show]);
 
-  function handleChange(e) {
-    const { name, value, type, checked } = e.target;
+  function handleChange(event) {
+    const { name, value } = event.target;
 
     setFormData({
       ...formData,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: value,
     });
   }
 
-  function onSubmit(e) {
-    e.preventDefault();
+  function onSubmit(event) {
+    event.preventDefault();
     handleSave(formData);
   }
 
@@ -47,58 +42,63 @@ function SportFormModal({
     <Modal show={show} onHide={handleClose} centered>
       <Modal.Header closeButton>
         <Modal.Title>
-          {selectedSport ? "Editar Deporte" : "Nuevo Deporte"}
+          {selectedUser ? "Editar Usuario" : "Nuevo Usuario"}
         </Modal.Title>
       </Modal.Header>
 
       <Form onSubmit={onSubmit}>
         <Modal.Body>
-
           <Form.Group className="mb-3">
-            <Form.Label>Nombre</Form.Label>
+            <Form.Label>Nombre Completo</Form.Label>
 
             <Form.Control
               type="text"
-              name="name"
-              value={formData.name}
+              name="full_name"
+              value={formData.full_name}
               onChange={handleChange}
               required
             />
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Objetivo</Form.Label>
+            <Form.Label>Correo</Form.Label>
 
             <Form.Control
-              as="textarea"
-              rows={3}
-              name="objective"
-              value={formData.objective}
+              type="email"
+              name="email"
+              value={formData.email}
               onChange={handleChange}
               required
             />
           </Form.Group>
+
+          {!selectedUser && (
+            <Form.Group className="mb-3">
+              <Form.Label>Contraseña</Form.Label>
+
+              <Form.Control
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+          )}
 
           <Form.Group className="mb-3">
-            <Form.Label>Duración (minutos)</Form.Label>
+            <Form.Label>Rol</Form.Label>
 
-            <Form.Control
-              type="number"
-              name="duration"
-              value={formData.duration}
+            <Form.Select
+              name="role"
+              value={formData.role}
               onChange={handleChange}
-              required
-            />
+            >
+              <option value="user">Usuario</option>
+              <option value="coach">Coach</option>
+              <option value="admin">Administrador</option>
+            </Form.Select>
           </Form.Group>
-
-          <Form.Check
-            type="switch"
-            label="Activo"
-            name="status"
-            checked={formData.status}
-            onChange={handleChange}
-          />
-
         </Modal.Body>
 
         <Modal.Footer>
@@ -115,4 +115,4 @@ function SportFormModal({
   );
 }
 
-export default SportFormModal;
+export default UserFormModal;

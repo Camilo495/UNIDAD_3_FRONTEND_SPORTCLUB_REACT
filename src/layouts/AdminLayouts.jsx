@@ -28,6 +28,9 @@ function AdminLayout() {
             <Link className="nav-link" to="/admin/users">
               Usuarios
             </Link>
+            <Link className="nav-link" to="/admin/sports">
+            Deportes
+          </Link>
           </Nav>
 
           <span className="user-name">{user?.full_name}</span>

@@ -17,6 +17,7 @@ import Profile from "../pages/user/Profile";
 import ProtectedRoute from "./ProtectedRoute"
 import RoleRoute from "./RoleRoute"
 import UsersPage from "../pages/admin/UsersPage"
+import SportsPage from "../pages/admin/SportsPage";
 
 function AppRoutes() {
     return (
@@ -38,6 +39,7 @@ function AppRoutes() {
                 <Route path="/admin" element={<RoleRoute allowedRoles={["admin"]}><AdminLayout /></RoleRoute>}>
                     <Route path="dashboard" element={<AdminDashboard />} />
                     <Route path="users" element={<UsersPage />} />
+                    <Route path="sports" element={<SportsPage />} />
                 </Route>
 
                 <Route path="/perfil" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
